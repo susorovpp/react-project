@@ -14,8 +14,6 @@
     cursor: pointer;
 }
 
-.input {}
-
 .input:active {
     outline: none;
 }
