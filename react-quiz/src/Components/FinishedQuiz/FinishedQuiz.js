@@ -9,7 +9,7 @@ const FinishedQuiz = props => {
         }
 
         return total
-    }, 0)
+    }, 0);
 
     return (
         <div className={classes.FinishedQuiz}>
@@ -28,7 +28,7 @@ const FinishedQuiz = props => {
                                 {quizItem.question}
                                 <i className={cls.join(' ')} />
                         </li>
-                    )
+                    );
 
                 })}
             </ul>
@@ -40,7 +40,7 @@ const FinishedQuiz = props => {
                 <Button type="success">Перейти в список тестов</Button>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default FinishedQuiz
+export default FinishedQuiz;

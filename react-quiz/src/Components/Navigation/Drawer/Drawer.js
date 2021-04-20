@@ -4,7 +4,7 @@ import Backdrop from '../../UI/Backdrop/Backdrop'
 
 const links = [
     1, 2, 3
-]
+];
 
 class Drawer extends Component {
 
@@ -34,8 +34,8 @@ class Drawer extends Component {
                 </nav>
                 {this.props.isOpen ? <Backdrop onClick={this.props.onClose}/> : null}
             </React.Fragment>
-        )
+        );
     }
-}
+};
 
-export default Drawer
+export default Drawer;

@@ -8,6 +8,6 @@ function App() {
       <Quiz />
     </Layout>
   );
-}
+};
 
 export default App;

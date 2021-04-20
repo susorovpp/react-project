@@ -20,6 +20,6 @@ const ActiveQuiz = props => (
             onAnswerClick={props.onAnswerClick}
         />
     </div>
-)
+);
 
-export default ActiveQuiz
+export default ActiveQuiz;

@@ -12,13 +12,13 @@ class Layout extends Component {
     toggleMenuHandler = () => {
         this.setState({
             menu: !this.state.menu
-        })
+        });
     }
 
     menuCloseHandler = () => {
         this.setState({
             menu: false
-        })
+        });
     }
 
     render() {
@@ -38,8 +38,8 @@ class Layout extends Component {
                     {this.props.children}
                 </main>
             </div>
-        )
+        );
     }
-}
+};
 
-export default Layout
+export default Layout;
