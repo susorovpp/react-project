@@ -50,6 +50,25 @@ export function logout() {
   };
 }
 
+export function autoLogin() {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      dispatch(logout());
+    } else {
+      const experationDate = new Date(localStorage.getItem("expirationDate"));
+      if (experationDate <= new Date()) {
+        dispatch(logout());
+      } else {
+        dispatch(authSuccess(token));
+        dispatch(
+          autoLogout((experationDate.getTime() - new Date().getTime()) / 1000)
+        );
+      }
+    }
+  };
+}
+
 export function authSuccess(token) {
   return {
     type: AUTH_SUCCESS,
