@@ -8,34 +8,22 @@ class Modal extends Component {
     this.state = { isModalOpen: false };
   }
 
-  openModal() {
-    this.setState({ isModalOpen: true });
-  }
-
-  closeModal() {
-    this.setState({ isModalOpen: false });
-  }
-
-  close(event) {
-    event.preventDefault();
-    this.closeModal();
-  }
+  onToogleModal = () => {
+    this.setState({ isModalOpen: !this.state.isModalOpen });
+  };
 
   render() {
     return (
       <div>
-        <a href="/#" className="link" onClick={() => this.openModal()}>
+        <a href="/#" className="link" onClick={this.onToogleModal}>
           Выбрать дату
         </a>
         {this.state.isModalOpen === false ? null : (
           <div>
-            <div
-              className="Calendar"
-              onClose={() => this.closeModal()}
-            >
+            <div className="Calendar" onClose={this.onToogleModal}>
               Здесь будет календарь
             </div>
-            <div className="Bg" onClick={(event) => this.close(event)}></div>
+            <div className="Bg" onClick={this.onToogleModal}></div>
           </div>
         )}
         <div></div>
@@ -43,6 +31,5 @@ class Modal extends Component {
     );
   }
 }
-
 
 export default Modal;
