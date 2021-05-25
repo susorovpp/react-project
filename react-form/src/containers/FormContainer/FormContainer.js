@@ -3,8 +3,9 @@ import "./FormContainer.css";
 import Frequency from "./../../components/Frequency/Frequency";
 import Time from "./../../components/Time/Time";
 import Amount from "./../../components/Amount/Amount";
-import WillWork from "../../components/WillWork/Output";
+import WillWork from "../../components/Output/Output";
 import { connect } from "react-redux";
+import Modal from "../../components/Modal/Modal";
 
 class FormContainer extends Component {
   getWeekDates = (targetDay, unlimited, steps, time, endDate) => {
@@ -25,17 +26,15 @@ class FormContainer extends Component {
 
     currentDate.setHours(time.slice(0, 2), time.slice(3, 5));
 
-    delta >= 0
+    delta > 0
       ? targetDate.setDate(currentDate.getDate() + delta)
       : targetDate.setDate(currentDate.getDate() + 7 + delta);
 
     while (counter < stepsCount) {
-      if (
-        this.props.isDateChecked && (
-        currentDate >= new Date(endDate))
-      ) {
-        console.log("зашел в if")
-        break;
+      if (this.props.isDateChecked && targetDate >= new Date(endDate)) {
+        console.log("зашел в if");
+        this.props.setOutput(result);
+        return;
       }
 
       if (counter === 5) {
@@ -52,7 +51,7 @@ class FormContainer extends Component {
         minutes: time.slice(3, 5),
       });
 
-      currentDate.setDate(targetDate.getDate());
+      currentDate.setDate(targetDate.getDate()); //
       targetDate.setDate(targetDate.getDate() + 7);
       counter += 1;
     }
@@ -75,23 +74,19 @@ class FormContainer extends Component {
     }
 
     while (counter < stepsCount) {
+      currentDate.setMonth(currentDate.getMonth() + targetMonth);
       
-      if (
-        this.props.isDateChecked && (
-        currentDate >= new Date(endDate))
-      ) {
-        console.log("зашел в if")
+      if (this.props.isDateChecked && currentDate > new Date(endDate)) {
+        console.log("зашел в if");
         break;
       }
-
-      currentDate.setMonth(currentDate.getMonth() + targetMonth);
 
       if (counter === 5) {
         result.push({
           date: "-//-//-//-",
           month: null,
-        hours: null,
-        minutes: null,
+          hours: null,
+          minutes: null,
         });
         break;
       }
@@ -118,7 +113,7 @@ class FormContainer extends Component {
         this.props.unlimited,
         this.props.count,
         this.props.time,
-        this.props.endDate,
+        this.props.endDate
       );
     }
 
@@ -128,7 +123,7 @@ class FormContainer extends Component {
         this.props.unlimited,
         this.props.count,
         this.props.time,
-        this.props.endDate,
+        this.props.endDate
       );
     }
   }
@@ -140,7 +135,7 @@ class FormContainer extends Component {
         this.props.unlimited,
         this.props.count,
         this.props.time,
-        this.props.endDate,
+        this.props.endDate
       );
     }
 
@@ -165,6 +160,7 @@ class FormContainer extends Component {
           <li>
             <span>Частота</span>
             <Frequency />
+            <Modal/>
           </li>
           <li>
             <span>Время</span>

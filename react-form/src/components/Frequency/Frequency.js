@@ -37,7 +37,7 @@ class Frequency extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Frequency">
         <label>
           <input
             type="radio"

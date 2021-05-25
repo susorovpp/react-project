@@ -11,6 +11,7 @@ const initialState = {
   endDate: "2021-06-19",
   output: [],
   time: "00:00",
+  isModalOpen: false,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -77,6 +78,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         time: action.time,
+      };
+      case "TOOGLEMODAL":
+      return {
+        ...state,
+        isModalOpen: !this.state.isModalOpen,
       };
     default:
       return state;

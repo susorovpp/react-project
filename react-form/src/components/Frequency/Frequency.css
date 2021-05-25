@@ -1,6 +1,15 @@
-.Select {
-  padding: 5px;
-  border: 2px solid #ccc;
-  outline: none;
-  line-height: 14px;
+.Frequency {
+  display: flex;
+  flex-direction: column;
+  
 }
+
+.Frequency > label {
+  margin-bottom: 15px;
+  
+}
+
+.Frequency select {
+  margin-left: 15px;
+}
+
