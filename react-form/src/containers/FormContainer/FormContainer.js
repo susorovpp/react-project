@@ -3,11 +3,21 @@ import "./FormContainer.css";
 import Frequency from "./../../components/Frequency/Frequency";
 import Time from "./../../components/Time/Time";
 import Amount from "./../../components/Amount/Amount";
-import WillWork from "../../components/Output/Output";
+import Output from "../../components/Output/Output";
 import { connect } from "react-redux";
 import Modal from "../../components/Modal/Modal";
+import React from "react";
 
 class FormContainer extends Component {
+  /**
+   * Функция получает массив объектов с еженедельными датами в соответствии с переданными параметрами
+   * @param {Number} targetDay выбранный пользователем в поле select день недели
+   * @param {Number} unlimited количество повторов при неограниченном количестве
+   * @param {Number} steps количество повторов, заданных пользователем вручную
+   * @param {String} time время, вводимое пользователем в одноименное поле. По умолчанию установлено "00:00"
+   * @param {String} endDate дата, до которой необходимо выполнять повтор
+   * @returns {Array} возвращает массив объектов с информацией по каждой дате (day, month, hours, minutes) и устанавливается результат в state
+   */
   getWeekDates = (targetDay, unlimited, steps, time, endDate) => {
     const currentDate = new Date();
     const targetDate = new Date();
@@ -15,10 +25,6 @@ class FormContainer extends Component {
     const result = [];
     let counter = 0;
     let stepsCount = unlimited;
-
-    // if (this.props.isUnlimitedChecked) {
-    //   stepsCount = unlimited;
-    // }
 
     if (this.props.isCountChecked) {
       stepsCount = steps;
@@ -32,7 +38,6 @@ class FormContainer extends Component {
 
     while (counter < stepsCount) {
       if (this.props.isDateChecked && targetDate >= new Date(endDate)) {
-        console.log("зашел в if");
         this.props.setOutput(result);
         return;
       }
@@ -59,15 +64,20 @@ class FormContainer extends Component {
     this.props.setOutput(result);
   };
 
+  /**
+   * Функция получает массив объектов с ежемесячными датами в соответствии с переданными параметрами
+   * @param {Number} targetDay выбранный пользователем в поле select день недели
+   * @param {Number} unlimited количество повторов при неограниченном количестве
+   * @param {Number} steps количество повторов, заданных пользователем вручную
+   * @param {String} time время, вводимое пользователем в одноименное поле. По умолчанию установлено "00:00"
+   * @param {String} endDate дата, до которой необходимо выполнять повтор
+   * @returns {Array} возвращает массив объектов с информацией по каждой дате (day, month, hours, minutes) и устанавливается результат в state
+   */
   getMonthDates = (targetMonth, unlimited, steps, time, endDate) => {
     const currentDate = new Date();
     const result = [];
     let stepsCount = unlimited;
     let counter = 0;
-
-    // if (this.props.isUnlimitedChecked) {
-    //   stepsCount = unlimited;
-    // }
 
     if (this.props.isCountChecked) {
       stepsCount = steps;
@@ -75,9 +85,7 @@ class FormContainer extends Component {
 
     while (counter < stepsCount) {
       currentDate.setMonth(currentDate.getMonth() + targetMonth);
-      
       if (this.props.isDateChecked && currentDate > new Date(endDate)) {
-        console.log("зашел в if");
         break;
       }
 
@@ -105,8 +113,6 @@ class FormContainer extends Component {
   };
 
   componentDidMount() {
-    // console.log(this.props);
-
     if (this.props.isWeekChecked) {
       this.getWeekDates(
         this.props.selectedDay,
@@ -148,34 +154,47 @@ class FormContainer extends Component {
         this.props.endDate
       );
     }
-
-    // console.log("prevProps", prevProps);
-    // console.log("this.props", this.props);
   }
 
   render() {
     return (
-      <form className="container">
-        <ul>
-          <li>
-            <span>Частота</span>
-            <Frequency />
-            <Modal/>
-          </li>
-          <li>
-            <span>Время</span>
-            <Time />
-          </li>
-          <li>
-            <span>Кол-во</span>
-            <Amount />
-          </li>
-          <li>
-            <span>Сработает</span>
-            <WillWork />
-          </li>
-        </ul>
-      </form>
+      <React.Fragment>
+        <h1>Настройка повтора платежей</h1>
+        <form className="FormContainer">
+          <ul>
+            <li>
+              <span>Частота</span>
+              <div>
+                <Frequency />
+                <Modal />
+              </div>
+            </li>
+            <li>
+              <span>Время</span>
+              <div>
+                <Time />
+              </div>
+            </li>
+            <li>
+              <span>Кол-во</span>
+              <div>
+                <Amount />
+              </div>
+            </li>
+            <li>
+              <span>Сработает</span>
+              <div>
+                <Output />
+              </div>
+            </li>
+            <li>
+              <div>
+                <button>Сохранить</button>
+              </div>
+            </li>
+          </ul>
+        </form>
+      </React.Fragment>
     );
   }
 }

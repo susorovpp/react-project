@@ -8,7 +8,7 @@ const initialState = {
   isDateChecked: false,
   unlimited: 6,
   count: 1,
-  endDate: "2021-06-19",
+  endDate: "2021-06-26",
   output: [],
   time: "00:00",
   isModalOpen: false,

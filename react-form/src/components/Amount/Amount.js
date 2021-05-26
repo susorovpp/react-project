@@ -1,10 +1,11 @@
 import { Component } from "react";
 import { connect } from "react-redux";
+import "./Amount.css";
 
 class Amount extends Component {
   render() {
     return (
-      <div>
+      <div className="Amount">
         <label>
           <input
             type="radio"
@@ -12,7 +13,7 @@ class Amount extends Component {
             checked={this.props.isUnlimitedChecked}
             onChange={this.props.onUnlimitedChecked}
           />
-          неограниченно
+          <span>неограниченно</span>
         </label>
 
         <label>
@@ -23,16 +24,16 @@ class Amount extends Component {
             onChange={this.props.onCountChecked}
           />
           <input
+            className="AmountInputNumber"
             type="number"
             value={this.props.count}
             onChange={(event) => {
               if (this.props.isCountChecked) {
-                this.props.onAddCount(event)
+                this.props.onAddCount(event);
               }
-              
             }}
           />
-          раза
+          <span>раза</span>
         </label>
 
         <label>
@@ -42,15 +43,15 @@ class Amount extends Component {
             checked={this.props.isDateChecked}
             onChange={this.props.onDateChecked}
           />
-          до
+          <span>до</span>
           <input
+            className="AmountInputDate"
             type="date"
             value={this.props.endDate}
             onChange={(event) => {
               if (this.props.isDateChecked) {
-                this.props.onAddDate(event)
+                this.props.onAddDate(event);
               }
-              
             }}
           />
         </label>
@@ -75,8 +76,10 @@ function mapDispatchToProps(dispatch) {
     onUnlimitedChecked: () => dispatch({ type: "UNLIMITED" }),
     onCountChecked: () => dispatch({ type: "COUNT" }),
     onDateChecked: () => dispatch({ type: "DATE" }),
-    onAddCount: (event) => dispatch({type: "ADDCOUNT", count: event.target.value}),
-    onAddDate: (event) => dispatch({type: "ADDDATE", endDate: event.target.value})
+    onAddCount: (event) =>
+      dispatch({ type: "ADDCOUNT", count: event.target.value }),
+    onAddDate: (event) =>
+      dispatch({ type: "ADDDATE", endDate: event.target.value }),
   };
 }
 

@@ -1,10 +1,11 @@
 import { Component } from "react";
 import { connect } from "react-redux";
+import "./Time.css"
 
 class Time extends Component {
   render() {
     return (
-      <div>
+      <div className="Time">
         <input
           type="time"
           onChange={this.props.onAddTime}
@@ -15,7 +16,6 @@ class Time extends Component {
     );
   }
 }
-// написать, механизм передачи выставленного значения в state
 
 function mapStateToProps(state) {
   return {

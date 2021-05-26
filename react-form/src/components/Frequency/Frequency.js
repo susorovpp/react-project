@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import "./Frequency.css";
 
 class Frequency extends Component {
+  /**
+   * Функция для отображения options в теге select для дней недели
+   * @returns компоненты option для каждого дня недели
+   */
   renderDaysOptions() {
     const days = [
       { value: 1, title: "Понедельник" },
@@ -23,6 +27,10 @@ class Frequency extends Component {
     });
   }
 
+  /**
+   * Функция для отображения options в теге select для месяцев
+   * @returns компоненты option для каждого месяца
+   */
   renderMonthsOptions() {
     const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -45,21 +53,19 @@ class Frequency extends Component {
             checked={this.props.isWeekChecked}
             onChange={this.props.onIsWeekChange}
           />
-          еженедельно в
+          <span>еженедельно в </span>
           <select
-          className="Select"
-          value={this.props.selectedDay}
-          onChange={(event) => {
-            if (this.props.isWeekChecked) {
-              this.props.onAddDay(event);
-            }
-          }}
-        >
-          {this.renderDaysOptions()}
-        </select>
+            className="Select"
+            value={this.props.selectedDay}
+            onChange={(event) => {
+              if (this.props.isWeekChecked) {
+                this.props.onAddDay(event);
+              }
+            }}
+          >
+            {this.renderDaysOptions()}
+          </select>
         </label>
-
-        
 
         <label>
           <input
@@ -68,21 +74,19 @@ class Frequency extends Component {
             checked={this.props.isMonthChecked}
             onChange={this.props.onIsMonthChange}
           />
-          ежемесячно
+          <span>ежемесячно</span>
           <select
-          className="Select"
-          value={this.props.selectedMonth}
-          onChange={(event) => {
-            if (this.props.isMonthChecked) {
-              this.props.onAddMonth(event);
-            }
-          }}
-        >
-          {this.renderMonthsOptions()}
-        </select>
+            className="Select"
+            value={this.props.selectedMonth}
+            onChange={(event) => {
+              if (this.props.isMonthChecked) {
+                this.props.onAddMonth(event);
+              }
+            }}
+          >
+            {this.renderMonthsOptions()}
+          </select>
         </label>
-
-        
       </div>
     );
   }

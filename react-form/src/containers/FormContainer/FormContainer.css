@@ -1,3 +1,35 @@
-.container {
+h1 {
+  background-color: rgba(204, 204, 204, 0.226);
+  text-align: center;
+  line-height: 52px;
+  margin: 0;
+  
+  font-size: 26px;
 }
 
+.FormContainer li > span {
+color: rgb(165, 164, 164);
+}
+
+.FormContainer ul {
+  list-style: none;
+}
+
+.FormContainer li {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
+
+.FormContainer li div {
+  min-width: 350px;
+}
+
+.FormContainer button {
+  padding: 15px 25px;
+  background-color: rgb(214, 214, 214);
+  margin-left: 100px;
+  margin-bottom: 25px;
+}

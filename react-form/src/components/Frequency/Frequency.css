@@ -11,5 +11,15 @@
 
 .Frequency select {
   margin-left: 15px;
+  padding: 5px;
+  border: 1px solid #ccc;
 }
 
+.Frequency span {
+  width: 50px;
+}
+
+.Frequency input {
+  margin-right: 5px;
+}
+  

@@ -1,0 +1,9 @@
+.Time {
+  font-style: italic;
+  color: rgb(165, 164, 164);
+}
+
+.Time input {
+  border: 1px solid #ccc;
+  padding: 5px;
+}

@@ -8,6 +8,9 @@ class Modal extends Component {
     this.state = { isModalOpen: false };
   }
 
+  /**
+   * Функция, которая меняет значение свойства isModalOpen с false на true и наоборот
+   */
   onToogleModal = () => {
     this.setState({ isModalOpen: !this.state.isModalOpen });
   };
@@ -16,7 +19,7 @@ class Modal extends Component {
     return (
       <div>
         <a href="/#" className="link" onClick={this.onToogleModal}>
-          Выбрать дату
+          Выбрать даты
         </a>
         {this.state.isModalOpen === false ? null : (
           <div>

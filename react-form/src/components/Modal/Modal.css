@@ -11,6 +11,7 @@
   background: #fff;
   text-align: center;
   line-height: 100px;
+  transition: all .22s ease-in;
 }
 
 .Bg {
