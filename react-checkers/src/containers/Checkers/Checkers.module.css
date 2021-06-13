@@ -1,0 +1,14 @@
+.Checkers {
+  display: flex;
+  align-items : center;
+  flex-direction: column;
+  padding-top: 100px;
+  flex-grow: 1;
+  width: 100%;
+  background: radial-gradient(circle, rgba(212,189,199,1) 0%, rgba(183,233,148,1) 100%);
+}
+
+.Checkers h1 {
+  color: #4d8029;
+}
+
